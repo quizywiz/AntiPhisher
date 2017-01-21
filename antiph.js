@@ -221,8 +221,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
       iframe.src = chrome.runtime.getURL('frame.html');
 
     // Some styles for a fancy sidebar
-      iframe.style.cssText = 'position:fixed;top:0;left:0;display:block;' +
-                           'width:300px;height:100%;z-index:1000;';
+      iframe.style.cssText = 'position:fixed;top:0;right:0;display:block;' +
+                           'width:450px;height:40%;z-index:1000;overflow:hidden';
       document.body.appendChild(iframe);
 }
     }
