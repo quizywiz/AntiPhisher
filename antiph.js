@@ -5,7 +5,7 @@
 /**
  * Get the current URL.
  *
- * @param {function(string)} callback - called when the URL of the current tab
+ * @param {function(string)} callback- called when the URL of the current tab
  *   is found.
  */
 var table = {"office":"office.com",
@@ -161,11 +161,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
   //window.alert("o")
   console.log("listen")
   getCurrentTabUrl(function(url) {
-    function checkDomain(ur) 
+    function checkDomain(ur)
     {
       function endsWith(str, suffix) {
         return str.substr(-suffix.length) === suffix;
-      } 
+      }
       var the_domain = ur;
       the_domain.replace("www.","")
       console.log(ur)
@@ -194,8 +194,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
             is_key = true
             for (var i = 0; i < value.length; i++) {
               console.log("the site "+value[i])
-              if(endsWith(the_domain, value[i]) 
-                && (the_domain.length == value[i].length 
+              if(endsWith(the_domain, value[i])
+                && (the_domain.length == value[i].length
                   || the_domain[the_domain.length - value[i].length - 1]=='.')) {
                 is_good = true
               }
