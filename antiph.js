@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     // Some styles for a fancy sidebar
       iframe.style.cssText = 'position:fixed;top:0;right:0;display:block;' +
-                           'width:450px;height:40%;z-index:1000;overflow:hidden';
+                           'width:450px;height:150px;z-index:1000;overflow:hidden;scrolling:no';
       document.body.appendChild(iframe);
 }
     }
