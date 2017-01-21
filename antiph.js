@@ -11,7 +11,7 @@
 function getCurrentTabUrl(callback) {
   // Query filter to be passed to chrome.tabs.query - see
   // https://developer.chrome.com/extensions/tabs#method-query
-  
+
   var url = new URL(window.location.href);
   // `domain` now has a value like 'example.com'
   /*chrome.tabs.query(queryInfo, function(tabs) {
@@ -30,7 +30,7 @@ function getCurrentTabUrl(callback) {
     // If you want to see the URL of other tabs (e.g. after removing active:true
     // from |queryInfo|), then the "tabs" permission is required to see their
     // "url" properties.
-    
+
   */
   callback(url.hostname);
 
@@ -44,13 +44,14 @@ function getCurrentTabUrl(callback) {
   // alert(url); // Shows "undefined", because chrome.tabs.query is async.
 }
 
+
 /**/
 
 document.addEventListener('DOMContentLoaded', function(event) {
   //window.alert("o")
   console.log("listen")
   getCurrentTabUrl(function(url) {
-    function checkDomain(ur) 
+    function checkDomain(ur)
     {
       var the_domain = ur;
       console.log(ur)
@@ -77,6 +78,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
     var found = checkDomain(url)
     if (found == true) {
       window.alert("Bad Website D: EXITEXITEXIT " + url);
+      var extensionOrigin = 'chrome-extension://' + chrome.runtime.id;
+      if (!location.ancestorOrigins.contains(extensionOrigin)) {
+        var iframe = document.createElement('iframe');
+    // Must be declared at web_accessible_resources in manifest.json
+      iframe.src = chrome.runtime.getURL('frame.html');
+
+    // Some styles for a fancy sidebar
+      iframe.style.cssText = 'position:fixed;top:0;left:0;display:block;' +
+                           'width:300px;height:100%;z-index:1000;';
+      document.body.appendChild(iframe);
+}
     }
   });
 });
