@@ -168,6 +168,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
       } 
       var the_domain = ur;
       the_domain.replace("www.","")
+      the_domain = the_domain.toLowerCase()
       console.log(ur)
       var map = new Map()
       for(var key in table) {
