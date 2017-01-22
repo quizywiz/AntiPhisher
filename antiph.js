@@ -64,13 +64,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
         console.log(ur)
         var map = new Map()
         for(var key in table) {
-          if(table.hasOwnProperty(key)) {
-            if(map.has(key)) {
-              map.set(key, _.union(map.get(key), [table[key]]));
-            } else {
-              map.set(key, [table[key]]);
-            }
-          }
+          map.set(key, table[key])
+          
         }
         //map.set('facebook', ['facebook.com'])
         //map.set('paypal', ['paypal.com'])

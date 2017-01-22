@@ -7,7 +7,7 @@ int main() {
 		cin >> a >> b;
 		for(char& x : a) if(x>='A' && x<='Z') x = x - 'A' + 'a';
 		for(char& x : b) if(x>='A' && x<='Z') x = x - 'A' + 'a';
-		cout<<"\""<<a<<"\":\""<<b<<"\","<<endl;
+		cout<<"\""<<a<<"\":[\""<<b<<"\"],"<<endl;
 	}
 	cout<<"}";
 	return 0;
