@@ -8,100 +8,114 @@
  * @param {function(string)} callback - called when the URL of the current tab
  *   is found.
  */
-function getCurrentTabUrl(callback) {
-  // Query filter to be passed to chrome.tabs.query - see
-  // https://developer.chrome.com/extensions/tabs#method-query
-  var queryInfo = {
-    active: true,
-    currentWindow: true
-  };
-
-  chrome.tabs.query(queryInfo, function(tabs) {
-    // chrome.tabs.query invokes the callback with a list of tabs that match the
-    // query. When the popup is opened, there is certainly a window and at least
-    // one tab, so we can safely assume that |tabs| is a non-empty array.
-    // A window can only have one active tab at a time, so the array consists of
-    // exactly one tab.
-    var tab = tabs[0];
-
-    // A tab is a plain object that provides information about the tab.
-    // See https://developer.chrome.com/extensions/tabs#type-Tab
-    var url = tab.url;
-    // check
-    // tab.url is only available if the "activeTab" permission is declared.
-    // If you want to see the URL of other tabs (e.g. after removing active:true
-    // from |queryInfo|), then the "tabs" permission is required to see their
-    // "url" properties.
-    console.assert(typeof url == 'string', 'tab.url should be a string');
-
-    callback(url);
-  });
-
-  // Most methods of the Chrome extension APIs are asynchronous. This means that
-  // you CANNOT do something like this:
-  //
-  // var url;
-  // chrome.tabs.query(queryInfo, function(tabs) {
-  //   url = tabs[0].url;
-  // });
-  // alert(url); // Shows "undefined", because chrome.tabs.query is async.
-}
-
-/*function checkDomain(ur) 
-    {
-      alert("hi  "+ur);
-      var the_domain = ur;
-
-        // strip off "http://" and/or "www."
-        the_domain = the_domain.replace("https://","");
-        the_domain = the_domain.replace("www.","");
-
-      var map = {
-          'facebook': facebook.com,
-          'paypal': paypal.com
-      }
-
-      for (var [key,value] of map.entries()) {
-        var str = value;
-          var res = the_domain.includes(key);
-          if (res == true) {
-            alert("is website")
-            if(the_domain != value) {
-              return true;
-            }
-          } 
-      }
-      return false
-    }
-    var found = checkDomain(url)*/
-
-window.addEventListener('DOMContentLoaded', function(event) {
-  //window.alert("o")
-  getCurrentTabUrl(function(url) {
-    // Put the image URL in Google search.
-    /*renderStatus('Performing Google Image search for ' + url);
-
-    getImageUrl(url, function(imageUrl, width, height) {
-
-      renderStatus('Search term: ' + url + '\n' +
-          'Google image search result: ' + imageUrl);
-      var imageResult = document.getElementById('image-result');
-      // Explicitly set the width/height to minimize the number of reflows. For
-      // a single image, this does not matter, but if you're going to embed
-      // multiple external images in your page, then the absence of width/height
-      // attributes causes the popup to resize multiple times.
-      imageResult.width = width;
-      imageResult.height = height;
-      imageResult.src = imageUrl;
-      imageResult.hidden = false;
-
-    }, function(errorMessage) {
-      renderStatus('Cannot display image. ' + errorMessage);
-    });*/
-    alert("page loaded")
-    var found = true
-    if (found == true) {
-      window.alert("Bad Website D: EXITEXITEXIT " + url);
-    }
-  });
-});
+chrome.storage.sync.set({"table":
+{"office":"office.com",
+"paypal":"paypal.com",
+"espn":"espn.com",
+"chase":"chase.com",
+"indeed":"indeed.com",
+"alibaba":"alibaba.com",
+"bankofamerica":"bankofamerica.com",
+"skype":"skype.com",
+"wellsfargo":"wellsfargo.com",
+"forbes":"forbes.com",
+"zillow":"zillow.com",
+"shutterstock":"shutterstock.com",
+"businessinsider":"businessinsider.com",
+"scribd":"scribd.com",
+"samsung":"samsung.com",
+"target":"target.com",
+"hdfc":"hdfcbank.com",
+"icici":"icicibank.com",
+"americanexpress":"americanexpress.com",
+"capitalone":"capitalone.com",
+"behance":"behance.net",
+"fedex":"fedex.com",
+"jpmc":"jpmorganchase.com",
+"jpmorganchase":"jpmorganchase.com",
+"bloomberg":"bloomberg.com",
+"wsj":"wsj.com",
+"reuters":"reuters.com",
+"att":"att.com",
+"verizon":"verizonwireless.com",
+"wiley":"wiley.com",
+"hm":"hm.com",
+"techcrunch":"techcrunch.com",
+"springer":"springer.com",
+"investing":"investing.com",
+"intel":"intel.com",
+"adp":"adp.com",
+"cnn":"cnn.com",
+"zara":"zara.com",
+"fidelity":"fidelity.com",
+"costco":"costco.com",
+"realtor":"realtor.com",
+"investopedia":"investopedia.com",
+"cisco":"cisco.com",
+"123rf":"123rf.com",
+"eventbrite":"eventbrite.com",
+"google":"google.com",
+"youtube":"youtube.com",
+"facebook":"facebook.com",
+"yahoo":"yahoo.com",
+"wikipedia":"wikipedia.org",
+"twitter":"twitter.com",
+"linkedin":"linkedin.com",
+"wordpress":"wordpress.com",
+"tumblr":"tumblr.com",
+"msn":"msn.com",
+"microsoft":"microsoft.com",
+"microsoft":"microsoftstore.com",
+"apple":"apple.com",
+"stackoverflow":"stackoverflow.com",
+"pinterest":"pinterest.com",
+"office":"office.com",
+"github":"github.com",
+"paypal":"paypal.com",
+"adobe":"adobe.com",
+"imgur":"imgur.com",
+"dropbox":"dropbox.com",
+"ask":"ask.com",
+"soundcloud":"soundcloud.com",
+"wikia":"wikia.com",
+"cnet":"cnet.com",
+"blogger":"blogger.com",
+"godaddy":"godaddy.com",
+"salesforce":"salesforce.com",
+"vimeo":"vimeo.com",
+"mediafire":"mediafire.com",
+"slideshare":"slideshare.net",
+"myway":"myway.com",
+"livejournal":"livejournal.com",
+"skype":"skype.com",
+"huffingtonpost":"huffingtonpost.com",
+"mozilla":"mozilla.org",
+"trello":"trello.com",
+"aol":"aol.com",
+"wordpress":"wordpress.org",
+"sourceforge":"sourceforge.net",
+"bongacams":"bongacams.com",
+"amazon":"amazon.com",
+"ebay":"ebay.com",
+"netflix":"netflix.com",
+"amazon":"amazon.co.uk",
+"walmart":"walmart.com",
+"bestbuy":"bestbuy.com",
+"steam":"steampowered.com",
+"etsy":"etsy.com",
+"ikea":"ikea.com",
+"target":"target.com",
+"homedepot":"homedepot.com",
+"groupon":"groupon.com",
+"bbc":"bbc.com",
+"macy":"macys.com",
+"newegg":"newegg.com",
+"nike":"nike.com",
+"cambridge":"cambridge.org",
+"nordstrom":"nordstrom.com",
+"humblebundle":"humblebundle.com",
+"bhphotovideo":"bhphotovideo.com",
+"bodybuilding":"bodybuilding.com",
+"kohls":"kohls.com",
+"costco":"costco.com",
+}},function(obj){})
