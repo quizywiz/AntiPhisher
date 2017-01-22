@@ -8,5 +8,7 @@ function leavePage() {
 }
 
 function stayOnPage() {
-    parent.postMessage('closeIframe', '*');
+	console.log("stay on page")
+	
+   	parent.postMessage('closeIframe', '*');
 }

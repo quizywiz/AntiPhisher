@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   console.log("listen")
   chrome.storage.sync.get("table", function(obj){
     var table = obj["table"]
+    //console.log("table "+table)
     getCurrentTabUrl(function(url) {
       function checkDomain(ur)
       {
@@ -114,8 +115,17 @@ document.addEventListener('DOMContentLoaded', function(event) {
           addEventListener('message', function(ev) {
             if (ev.data === 'closeIframe') {
               document.body.removeChild(iframe);
-          }
-        });
+              if (table.hasOwnProperty(url)) {
+                table[url] = _.union(table[url],[url])
+              } else {
+                table[url] = [url]
+              }
+              console.log("add " + url)
+              chrome.storage.sync.set({"table":table}, 
+                function(obj){console.log("added")})
+            
+            }
+          });
         }
       }
     })
