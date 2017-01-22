@@ -101,40 +101,21 @@ document.addEventListener('DOMContentLoaded', function(event) {
       //var found = true
       var found = checkDomain(url)
       if (found == true) {
-        window.alert("Bad Website D: EXITEXITEXIT " + url);
         var extensionOrigin = 'chrome-extension://' + chrome.runtime.id;
         if (!location.ancestorOrigins.contains(extensionOrigin)) {
           var iframe = document.createElement('iframe');
-      // Must be declared at web_accessible_resources in manifest.json
-        iframe.src = chrome.runtime.getURL('frame.html');
+          // Must be declared at web_accessible_resources in manifest.json
+          iframe.src = chrome.runtime.getURL('frame.html');
 
-      // Some styles for a fancy sidebar
-        iframe.style.cssText = 'position:fixed;top:0;right:0;display:block;' +
+          // Some styles for a fancy sidebar
+          iframe.style.cssText = 'position:fixed;top:0;right:0;display:block;' +
                              'width:450px;height:150px;z-index:1000;overflow:hidden;scrolling:no';
-        document.body.appendChild(iframe);
+          document.body.appendChild(iframe);
+          function closeIFrame(){
+            document.body.removeChild(iframe);
+          }
         }
       }
-<<<<<<< HEAD
-    }
-    //var found = true
-    var found = checkDomain(url)
-    if (found == true) {
-      var extensionOrigin = 'chrome-extension://' + chrome.runtime.id;
-      if (!location.ancestorOrigins.contains(extensionOrigin)) {
-        var iframe = document.createElement('iframe');
-    // Must be declared at web_accessible_resources in manifest.json
-      iframe.src = chrome.runtime.getURL('frame.html');
-
-    // Some styles for a fancy sidebar
-      iframe.style.cssText = 'position:fixed;top:0;right:0;display:block;' +
-                           'width:450px;height:150px;z-index:1000;overflow:hidden;scrolling:no';
-      document.body.appendChild(iframe);
-      function closeIFrame(){
-        document.body.removeChild(iframe);
-    }
-
-}
-    }
-  });
-
+    })
+  })
 });
