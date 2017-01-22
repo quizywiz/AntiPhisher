@@ -210,7 +210,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
     //var found = true
     var found = checkDomain(url)
     if (found == true) {
-      window.alert("Bad Website D: EXITEXITEXIT " + url);
       var extensionOrigin = 'chrome-extension://' + chrome.runtime.id;
       if (!location.ancestorOrigins.contains(extensionOrigin)) {
         var iframe = document.createElement('iframe');
@@ -221,6 +220,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
       iframe.style.cssText = 'position:fixed;top:0;right:0;display:block;' +
                            'width:450px;height:150px;z-index:1000;overflow:hidden;scrolling:no';
       document.body.appendChild(iframe);
+      function closeIFrame(){
+        document.body.removeChild(iframe);
+    }
+
 }
     }
   });
