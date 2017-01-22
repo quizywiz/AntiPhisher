@@ -35,7 +35,7 @@ function getCurrentTabUrl(callback) {
     // "url" properties.
 
   */
-  callback(url.hostname);
+  callback(url);
 
   // Most methods of the Chrome extension APIs are asynchronous. This means that
   // you CANNOT do something like this:
@@ -59,9 +59,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
         function endsWith(str, suffix) {
           return str.substr(-suffix.length) === suffix;
         }
-        var the_domain = ur;
+        var the_domain = ur.hostname;
         the_domain.replace("www.","")
         the_domain = the_domain.toLowerCase()
+        ur = ur.href.toLowerCase()
         console.log(ur)
         var map = new Map()
         for(var key in table) {
@@ -74,13 +75,15 @@ document.addEventListener('DOMContentLoaded', function(event) {
         console.log(map)
         var is_key = false
         var is_good = false
+        var target = ""
         for (var [key,value] of map.entries()) {
           var str = value;
-            var res = the_domain.includes(key);
+            var res = ur.includes(key);
             if (res == true) {
               console.log("is a KEY website")
               console.log(value)
               is_key = true
+              target = key
               for (var i = 0; i < value.length; i++) {
                 console.log("the site "+value[i])
                 if(endsWith(the_domain, value[i])
@@ -93,20 +96,21 @@ document.addEventListener('DOMContentLoaded', function(event) {
         }
         if (is_key && !is_good) {
           console.log("bad website")
-          return true
+          return [true,target]
         } else {
           console.log("not bad website")
-          return false
+          return [false,target]
         }
       }
       //var found = true
       var found = checkDomain(url)
-      if (found == true) {
+      if (found[0] == true) {
+        
         var extensionOrigin = 'chrome-extension://' + chrome.runtime.id;
         if (!location.ancestorOrigins.contains(extensionOrigin)) {
           var iframe = document.createElement('iframe');
           // Must be declared at web_accessible_resources in manifest.json
-          iframe.src = chrome.runtime.getURL('frame.html');
+          iframe.src = chrome.runtime.getURL('frame.html') + "?current="+ url +"&target="+found[1];
 
           // Some styles for a fancy sidebar
           iframe.style.cssText = 'position:fixed;top:0;right:0;display:block;' +
@@ -115,12 +119,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
           addEventListener('message', function(ev) {
             if (ev.data === 'closeIframe') {
               document.body.removeChild(iframe);
-              if (table.hasOwnProperty(url)) {
-                table[url] = _.union(table[url],[url])
+              if (table.hasOwnProperty(url.hostname)) {
+                table[url.hostname] = _.union(table[url.hostname],[url.hostname])
               } else {
-                table[url] = [url]
+                table[url.hostname] = [url.hostname]
               }
-              console.log("add " + url)
+              console.log("add " + url.hostname)
               chrome.storage.sync.set({"table":table}, 
                 function(obj){console.log("added")})
             
