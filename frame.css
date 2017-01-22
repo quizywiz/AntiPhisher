@@ -6,7 +6,6 @@ html, body, iframe, h2 {
     display: block;
     left: 100px;
     width: 100vw;
-    height: 30%;
     background: white;
     color: black;
 }
@@ -56,11 +55,15 @@ html, body, iframe, h2 {
 	top:1px;
 }
 h2 {
-    height: 150px;
+    height: 50px;
     font-size: 15px;
+    text-align: center;
     padding:10px;
 }
 iframe {
     height: 300px;
+}
+body {
+	height: 150px;
 }
 </style>

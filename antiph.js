@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
           // Some styles for a fancy sidebar
           iframe.style.cssText = 'position:fixed;top:0;right:0;display:block;' +
-                             'width:450px;height:150px;z-index:1000;overflow:hidden;scrolling:no';
+                             'width:450px;height:150px;z-index:1000;overflow:hidden;background-color:white';
           document.body.appendChild(iframe);
           addEventListener('message', function(ev) {
             if (ev.data === 'closeIframe') {
