@@ -63,6 +63,7 @@ chrome.storage.sync.set({"table":
 "imgur":["imgur.com"],
 "dropbox":["dropbox.com"],
 "ask":["ask.com"],
+"askubuntu":["askubuntu.com"],
 "soundcloud":["soundcloud.com"],
 "wikia":["wikia.com"],
 "cnet":["cnet.com"],
