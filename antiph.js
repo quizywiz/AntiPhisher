@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
               console.log("is a KEY website")
               console.log(value)
               is_key = true
-              target = key
+              target = value[0]
               for (var i = 0; i < value.length; i++) {
                 console.log("the site "+value[i])
                 if(endsWith(the_domain, value[i])
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
       //var found = true
       var found = checkDomain(url)
       if (found[0] == true) {
-        
+
         var extensionOrigin = 'chrome-extension://' + chrome.runtime.id;
         if (!location.ancestorOrigins.contains(extensionOrigin)) {
           var iframe = document.createElement('iframe');
@@ -125,9 +125,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 table[url.hostname] = [url.hostname]
               }
               console.log("add " + url.hostname)
-              chrome.storage.sync.set({"table":table}, 
+              chrome.storage.sync.set({"table":table},
                 function(obj){console.log("added")})
-            
+
             }
           });
         }
