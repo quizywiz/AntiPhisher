@@ -5,7 +5,7 @@
 /**
  * Get the current URL.
  *
- * @param {function(string)} callback - called when the URL of the current tab
+ * @param {function(string)} callback- called when the URL of the current tab
  *   is found.
  */
 var table = {"office":"office.com",
@@ -153,19 +153,16 @@ function getCurrentTabUrl(callback) {
   // });
   // alert(url); // Shows "undefined", because chrome.tabs.query is async.
 }
-
-
 /**/
-
 document.addEventListener('DOMContentLoaded', function(event) {
   //window.alert("o")
   console.log("listen")
   getCurrentTabUrl(function(url) {
-    function checkDomain(ur) 
+    function checkDomain(ur)
     {
       function endsWith(str, suffix) {
         return str.substr(-suffix.length) === suffix;
-      } 
+      }
       var the_domain = ur;
       the_domain.replace("www.","")
       the_domain = the_domain.toLowerCase()
@@ -195,8 +192,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
             is_key = true
             for (var i = 0; i < value.length; i++) {
               console.log("the site "+value[i])
-              if(endsWith(the_domain, value[i]) 
-                && (the_domain.length == value[i].length 
+              if(endsWith(the_domain, value[i])
+                && (the_domain.length == value[i].length
                   || the_domain[the_domain.length - value[i].length - 1]=='.')) {
                 is_good = true
               }
@@ -223,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
     // Some styles for a fancy sidebar
       iframe.style.cssText = 'position:fixed;top:0;right:0;display:block;' +
-                           'width:450px;height:40%;z-index:1000;overflow:hidden';
+                           'width:450px;height:150px;z-index:1000;overflow:hidden;scrolling:no';
       document.body.appendChild(iframe);
 }
     }
