@@ -111,9 +111,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
           iframe.style.cssText = 'position:fixed;top:0;right:0;display:block;' +
                              'width:450px;height:150px;z-index:1000;overflow:hidden;background-color:white';
           document.body.appendChild(iframe);
-          function closeIFrame(){
-            document.body.removeChild(iframe);
+          addEventListener('message', function(ev) {
+            if (ev.data === 'closeIframe') {
+              document.body.removeChild(iframe);
           }
+        });
         }
       }
     })
